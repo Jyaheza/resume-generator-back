@@ -1,11 +1,11 @@
 [Unit]
-Description=NodeJS Storytime Backend
+Description=NodeJS Resume Builder Backend
 After=network.target
  
 [Service]
 Type=simple
 User=ubuntu
-WorkingDirectory=/home/ubuntu/nodeapps/storytime-backend/
+WorkingDirectory=/home/ubuntu/nodeapps/resume-builder-backend/
 ExecStart=/usr/local/bin/npm run start
 Restart=on-failure
  

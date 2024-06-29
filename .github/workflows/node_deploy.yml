@@ -41,9 +41,9 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           ARGS: "-rltgoDzvO --delete"
           SOURCE: "deploy/"
-          REMOTE_HOST: "ec2-3-16-112-138.us-east-2.compute.amazonaws.com"
+          REMOTE_HOST: "ec2-3-17-175-207.us-east-2.compute.amazonaws.com"
           REMOTE_USER: ubuntu
-          TARGET: "nodeapps/storytime-backend"
+          TARGET: "nodeapps/resume-builder-backend"
       - name: Execute SSH commmands on remote server
         uses: JimCronqvist/action-ssh@master
         env:
@@ -53,9 +53,9 @@ jobs:
           privateKey: ${{ secrets.SERVER_SSH_KEY }}
           debug: true
           command: |
-            cd nodeapps/storytime-backend
+            cd nodeapps/resume-builder-backend
             npm install
-            sudo systemctl stop storytime-backend
-            sudo cp storytime-backend.service /lib/systemd/system/storytime-backend.service
+            sudo systemctl stop resume-builder-backend
+            sudo cp resume-builder-backend.service /lib/systemd/system/resume-builder-backend.service
             sudo systemctl daemon-reload
-            sudo systemctl start storytime-backend
+            sudo systemctl start resume-builder-backend
