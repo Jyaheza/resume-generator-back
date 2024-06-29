@@ -24,16 +24,12 @@ app.use(express.urlencoded({ extended: true }));
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to the story time backend." });
+  res.json({ message: "Welcome to the resume builder backend." });
 });
 
-require("./app/routes/stories.routes.js")(app);
+require("./app/routes/jobMatch.routes.js")(app);
 require("./app/routes/auth.routes.js")(app);
 require("./app/routes/user.routes")(app);
-require("./app/routes/settings.routes.js")(app);
-require("./app/routes/countries.routes.js")(app);
-require("./app/routes/characters.routes.js")(app);
-require("./app/routes/languages.routes.js")(app);
 
 
 
