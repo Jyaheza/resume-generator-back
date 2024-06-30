@@ -1,4 +1,3 @@
-const { error } = require("console");
 const { startCohereChat } = require("./cohere-client-service");
 
 /**
