@@ -14,53 +14,107 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-/**
- * All of the models being sequelized down below
- */
+/// Import and initialize models
+db.User = require("./user.model.js")(sequelize, Sequelize);
+db.Resume = require("./resume.model.js")(sequelize, Sequelize);
+db.ResumeData = require("./resumedata.model.js")(sequelize, Sequelize);
+db.Review = require("./review.model.js")(sequelize, Sequelize);
+db.Skill = require("./skills.model.js")(sequelize, Sequelize);
+db.Project = require("./projects.model.js")(sequelize, Sequelize);
+db.Experience = require("./experiences.model.js")(sequelize, Sequelize);
+db.Education = require("./education.model.js")(sequelize, Sequelize);
 
-db.user = require("./user.model.js")(sequelize, Sequelize);
-db.story = require("./stories.model.js")(sequelize, Sequelize);
-db.characters = require("./characters.model.js")(sequelize, Sequelize);
-db.countries = require("./countries.model.js")(sequelize, Sequelize);
-db.languages = require("./languages.model.js")(sequelize, Sequelize);
-db.settings = require("./settings.model.js")(sequelize, Sequelize);
-db.session = require("./session.model.js")(sequelize, Sequelize);
+// Define relationships
 
+// User has many Resumes
+db.User.hasMany(db.Resume, {
+  as: "resumes",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.Resume.belongsTo(db.User, {
+  as: "user",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
 
-/**
- * foreign key relations below
- */
+// Resume has one ResumeData
+db.Resume.hasOne(db.ResumeData, {
+  as: "resumeData",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.ResumeData.belongsTo(db.Resume, {
+  as: "resume",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
 
-/**
- *  the user in the database can have many stories. but the one story belongs to the one user.
- * The secondary object (story) belongs to one user. but the primary object (user) can have multiple stories
- * ON DELETE CASCADE is used to specify that when a row is deleted from the parent table,
- *  all rows in the child table that reference the deleted row should also be deleted.
- *  This is useful for maintaining the integrity of the database.
- */
+// Resume has many Reviews
+db.Resume.hasMany(db.Review, {
+  as: "reviews",
+  foreignKey: {
+    name: 'resumeId',  // Explicitly name the foreign key
+    allowNull: false,
+  },
+  onDelete: "CASCADE",
+});
 
-// foreign key for user and story
-db.user.hasMany(
-  db.story,
-  { as: "story" },
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-);
-db.story.belongsTo(
-  db.user,
-  { as: "users" },
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-);
+db.Review.belongsTo(db.Resume, {
+  as: "resume",
+  foreignKey: {
+    name: 'resumeId',  // Use the same name here to avoid conflicts
+    allowNull: false,
+  },
+  onDelete: "CASCADE",
+});
 
-// foreign key for user and session
-db.user.hasMany(
-  db.session,
-  { as: "session" },
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-);
-db.session.belongsTo(
-  db.user,
-  { as: "user" },
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-);
+// User has many Skills
+db.User.hasMany(db.Skill, {
+  as: "skills",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.Skill.belongsTo(db.User, {
+  as: "user",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+
+// User has many Projects
+db.User.hasMany(db.Project, {
+  as: "projects",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.Project.belongsTo(db.User, {
+  as: "user",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+
+// User has many Experiences
+db.User.hasMany(db.Experience, {
+  as: "experiences",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.Experience.belongsTo(db.User, {
+  as: "user",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+
+// User has many Educations
+db.User.hasMany(db.Education, {
+  as: "educations",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
+db.Education.belongsTo(db.User, {
+  as: "user",
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE",
+});
 
 module.exports = db;
