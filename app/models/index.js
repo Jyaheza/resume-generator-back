@@ -54,7 +54,7 @@ db.ResumeData.belongsTo(db.Resume, {
 db.Resume.hasMany(db.Review, {
   as: "reviews",
   foreignKey: {
-    name: 'resumeId',  // Explicitly name the foreign key
+    name: 'resumeId', 
     allowNull: false,
   },
   onDelete: "CASCADE",
@@ -63,7 +63,7 @@ db.Resume.hasMany(db.Review, {
 db.Review.belongsTo(db.Resume, {
   as: "resume",
   foreignKey: {
-    name: 'resumeId',  // Use the same name here to avoid conflicts
+    name: 'resumeId', 
     allowNull: false,
   },
   onDelete: "CASCADE",
