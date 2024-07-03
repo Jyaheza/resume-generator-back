@@ -8,6 +8,10 @@ const { startCohereChat } = require("./cohere-client-service");
  * @returns a number 0-5.
  */
 async function generateJobMatchScore(resume, jobDescription) {
+    if(!resume || !jobDescription){
+        throw new Error("Job match requires a valid resume and job description.");
+    }
+
     const preamble = `You are a career services staff member at a university helping students enter the workforce by reviewing and critiquing their resumes.`;
 
     let chatInputMessage = `Please compare the given resume against the given job description and 
@@ -30,11 +34,31 @@ async function generateJobMatchScore(resume, jobDescription) {
 }
 
 /**
- * Stub
- * @returns 
+ * Provides critique of the match between the resume and the job description.
+ * 
+ * @param {*} resume 
+ * @param {*} jobDescription 
+ * @returns response string
  */
-async function generateJobMatchCritique() {
-    return '';
+async function generateJobMatchCritique(resume, jobDescription) {
+    if(!resume || !jobDescription){
+        throw new Error("Job match requires a valid resume and job description.");
+    }
+    
+    const preamble = `You are a career services staff member at a university helping students enter the workforce by reviewing and critiquing their resumes.`;
+    
+    let chatInputMessage = `Please compare the given resume against the given job description and 
+    return a brief summary, no more than 2 paragraphs, about how the resume content does or does not match the requirements 
+    of the job description. Strong matches can be emphasized, but if there is no match, please to not attempt to 
+    draw positive match conclusions from the resume and job description. You should base your comments on any factors available in both the resume and 
+    job description including, but not limited to: job title, the student's area of study, industry, 
+    business domain, education, required experience, salary range and geographic location. Please direct this commentary
+    directly to the student, and do not refer to them in the 3rd person.`;
+    
+    chatInputMessage += `Here's the resume of interest: ${resume}. `;
+    chatInputMessage += `Here's the jobDescription of interest: ${jobDescription}.`;
+
+    return await startCohereChat(preamble, chatInputMessage);
 }
 
 /**
@@ -48,7 +72,7 @@ function isNumber(value) {
 }
 
 /**
- * Determinse whether value falls in the requested 0-5 range
+ * Determines whether value falls in the requested 0-5 range
  * @param {*} value 
  * @returns boolean
  */

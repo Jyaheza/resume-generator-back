@@ -11,6 +11,7 @@ exports.get = async (req, res) => {
 
     try {
         jobMatchResponse.score = await generateJobMatchScore(resume, jobDescription);
+        jobMatchResponse.critique = await generateJobMatchCritique(resume, jobDescription);
 
         try {
             res.send(jobMatchResponse);
