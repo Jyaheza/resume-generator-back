@@ -1,27 +1,30 @@
 module.exports = (sequelize, Sequelize) => {
-    const Project = sequelize.define("Projects", {
+  const Project = sequelize.define("Projects", {
     id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-        },
-      title: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      description: {
-        type: Sequelize.TEXT,
-        allowNull: true
-      },
-      userId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Users',
-          key: 'id'
-        }
-      }
-    });
-    return Project;
-  };
-  
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    project_title: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    location: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    summary: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    start_year: {
+      type: Sequelize.DATE,
+      allowNull: false
+    },
+    end_year: {
+      type: Sequelize.DATE,
+      allowNull: true
+    }
+  });
+  return Project;
+};

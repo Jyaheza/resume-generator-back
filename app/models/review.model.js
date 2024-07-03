@@ -1,22 +1,22 @@
 module.exports = (sequelize, Sequelize) => {
-  const Review = sequelize.define("Review", {
+  const ResumeReview = sequelize.define("ResumeReview", {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
-    content: {
+    title: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    body: {
       type: Sequelize.TEXT,
       allowNull: false
     },
-    rating: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      validate: {
-        min: 1,
-        max: 5
-      }
+    status: {
+      type: Sequelize.STRING,
+      allowNull: false
     }
   });
-  return Review;
+  return ResumeReview;
 };

@@ -7,15 +7,15 @@ module.exports = (sequelize, Sequelize) => {
     },
     title: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: false
     },
-    userId: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'Users',
-        key: 'id',
-      },
+    resume_text: {
+      type: Sequelize.TEXT,
+      allowNull: true
+    },
+    resume_pdf: {
+      type: Sequelize.STRING,
+      allowNull: true
     },
   });
   return Resume;
