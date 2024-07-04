@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const Language = sequelize.define("languages", {
+  const Skill = sequelize.define("Skills", {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
@@ -7,8 +7,8 @@ module.exports = (sequelize, Sequelize) => {
     },
     name: {
       type: Sequelize.STRING,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   });
-  return Language;
+  return Skill;
 };
