@@ -24,6 +24,7 @@ db.Project = require("./projects.model.js")(sequelize, Sequelize);
 db.Experience = require("./experiences.model.js")(sequelize, Sequelize);
 db.Education = require("./education.model.js")(sequelize, Sequelize);
 db.Certificate = require("./certificates.model.js")(sequelize, Sequelize);
+db.Session = require("./Session.model.js")(sequelize, Sequelize);
 
 // Define relationships
 

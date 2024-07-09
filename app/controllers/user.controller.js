@@ -1,6 +1,6 @@
 const db = require("../models");
-const User = db.user;
-const Session = db.session;
+const User = db.User;
+const Session = db.Session;
 const Op = db.Sequelize.Op;
 const { encrypt, getSalt, hashPassword } = require("../authentication/crypto");
 
@@ -42,6 +42,7 @@ exports.create = async (req, res) => {
       email: req.body.email,
       password: hash,
       salt: salt,
+      role: req.body.role
     };
 
     // Save User in the database
@@ -68,12 +69,13 @@ exports.create = async (req, res) => {
       firstName: user.firstName,
       lastName: user.lastName,
       id: user.id,
+      role: user.role,
       token: token,
     };
 
     res.send(userInfo);
   } catch (err) {
-    console.log(err);
+    console.log(err.message);
     res.status(404).send({
       message: err.message || "Some error occurred while creating the User.",
     });
