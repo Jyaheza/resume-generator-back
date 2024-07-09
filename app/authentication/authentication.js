@@ -1,7 +1,7 @@
 const db = require("../models");
 const { hashPassword } = require("./crypto");
 const Session = db.session;
-const User = db.user;
+const User = db.User;
 
 /**
  * Gets the authentication for this request. Throws an error if there is an authentcation problem.

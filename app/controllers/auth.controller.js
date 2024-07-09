@@ -1,6 +1,6 @@
 const db = require("../models");
 const { authenticate } = require("../authentication/authentication");
-const User = db.user;
+const User = db.User;
 const Session = db.session;
 const Op = db.Sequelize.Op;
 const { encrypt } = require("../authentication/crypto");
