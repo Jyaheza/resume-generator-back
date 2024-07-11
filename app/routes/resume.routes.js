@@ -4,7 +4,9 @@ module.exports = (app) => {
     const { authenticateRoute } = require("../authentication/authentication");
   
     // Create a new Setting for a Resume
-    router.post("/resume/", [authenticateRoute], Resume.create);
+    router.post("/resume/", 
+      [authenticateRoute], 
+      Resume.create);
   
     //Update a Resume with ID
     router.put("/resume/:id", [authenticateRoute], Resume.update);

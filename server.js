@@ -28,6 +28,7 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/jobMatch.routes.js")(app);
+require("./app/routes/resume.routes.js")(app);
 require("./app/routes/auth.routes.js")(app);
 require("./app/routes/user.routes.js")(app);
 // require("./app/routes/education.routes.js")(app);
@@ -38,8 +39,6 @@ require("./app/routes/user.routes.js")(app);
 // require("./app/routes/resumedata.routes.js")(app);
 // require("./app/routes/review.routes.js")(app);
 // require("./app/routes/skills.routes.js")(app);
-
-
 
 
 

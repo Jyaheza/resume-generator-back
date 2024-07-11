@@ -9,6 +9,10 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false
     },
+    location:{
+      type: Sequelize.STRING,
+      allowNull: false
+    },
     start_year: {
       type: Sequelize.DATE,
       allowNull: false
@@ -20,6 +24,10 @@ module.exports = (sequelize, Sequelize) => {
     degree_name: {
       type: Sequelize.STRING,
       allowNull: false
+    },
+    gpa: {
+      type: Sequelize.STRING,
+      allowNull:true
     },
     awards: {
       type: Sequelize.STRING,

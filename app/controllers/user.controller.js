@@ -6,6 +6,7 @@ const { encrypt, getSalt, hashPassword } = require("../authentication/crypto");
 
 // Create and Save a new User
 exports.create = async (req, res) => {
+  console.log(Session);
   // Validate request
   if (!req.body.firstName) {
     return res.status(400).send({ message: "First name cannot be empty for user!" });
@@ -37,6 +38,7 @@ exports.create = async (req, res) => {
     // Create a User object
     const user = {
       id: req.body.id,
+      userName: req.body.userName,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,

@@ -24,7 +24,7 @@ db.Project = require("./projects.model.js")(sequelize, Sequelize);
 db.Experience = require("./experiences.model.js")(sequelize, Sequelize);
 db.Education = require("./education.model.js")(sequelize, Sequelize);
 db.Certificate = require("./certificates.model.js")(sequelize, Sequelize);
-db.Session = require("./Session.model.js")(sequelize, Sequelize);
+db.Session = require("./session.model.js")(sequelize, Sequelize);
 
 // Define relationships
 
@@ -40,17 +40,6 @@ db.Resume.belongsTo(db.User, {
   onDelete: "CASCADE",
 });
 
-// Resume has one ResumeData
-db.Resume.hasOne(db.ResumeData, {
-  as: "resumeData",
-  foreignKey: { allowNull: false, name: 'resume_id' },
-  onDelete: "CASCADE",
-});
-db.ResumeData.belongsTo(db.Resume, {
-  as: "resume",
-  foreignKey: { allowNull: false, name: 'resume_id' },
-  onDelete: "CASCADE",
-});
 
 // Resume has many ResumeReviews
 db.Resume.hasMany(db.ResumeReview, {

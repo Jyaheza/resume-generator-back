@@ -1,0 +1,364 @@
+<html>
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <style type="text/css">
+        .c0 {
+            color: #000000;
+            font-weight: 700;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 11pt;
+            font-family: "Arial";
+            font-style: normal
+        }
+
+        .c2 {
+            color: #000000;
+            font-weight: 400;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-size: 11pt;
+            font-family: "Times New Roman";
+            font-style: normal
+        }
+
+        .c5 {
+            padding-top: 0pt;
+            padding-bottom: 0pt;
+            line-height: 1.1500000000000001;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .c10 {
+            color: #000000;
+            text-decoration: none;
+            vertical-align: baseline;
+            font-style: normal
+        }
+
+        .c11 {
+            font-weight: 400;
+            font-size: 11pt;
+            font-family: "Arial"
+        }
+
+        .c12 {
+            font-weight: 700;
+            font-size: 18pt;
+            font-family: "Arial"
+        }
+
+        .c13 {
+            background-color: #ffffff;
+            max-width: 468pt;
+        }
+
+        .c6 {
+            padding: 0;
+            margin: 0
+        }
+
+        .c1 {
+            font-weight: 700;
+            font-family: "Times New Roman"
+        }
+
+        .c9 {
+            font-weight: 400;
+            font-family: "Times New Roman"
+        }
+
+        .c4 {
+            font-size: 12pt
+        }
+
+        .c8 {
+            font-style: italic
+        }
+
+        .c7 {
+            height: 11pt
+        }
+
+        .c14 {
+            margin-left: 36pt
+        }
+
+        .title {
+            padding-top: 0pt;
+            color: #000000;
+            font-size: 26pt;
+            padding-bottom: 3pt;
+            font-family: "Arial";
+            line-height: 1.1500000000000001;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .subtitle {
+            padding-top: 0pt;
+            color: #666666;
+            font-size: 15pt;
+            padding-bottom: 16pt;
+            font-family: "Arial";
+            line-height: 1.1500000000000001;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        li {
+            color: #000000;
+            font-size: 11pt;
+            font-family: "Arial"
+        }
+
+        p {
+            margin: 0;
+            color: #000000;
+            font-size: 11pt;
+            font-family: "Arial"
+        }
+
+        h1 {
+            padding-top: 20pt;
+            color: #000000;
+            font-size: 20pt;
+            padding-bottom: 6pt;
+            font-family: "Arial";
+            line-height: 1.1500000000000001;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h2 {
+            padding-top: 18pt;
+            color: #000000;
+            font-size: 16pt;
+            padding-bottom: 6pt;
+            font-family: "Arial";
+            line-height: 1.1500000000000001;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h3 {
+            padding-top: 16pt;
+            color: #434343;
+            font-size: 14pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.1500000000000001;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h4 {
+            padding-top: 14pt;
+            color: #666666;
+            font-size: 12pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.1500000000000001;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h5 {
+            padding-top: 12pt;
+            color: #666666;
+            font-size: 11pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.1500000000000001;
+            page-break-after: avoid;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        h6 {
+            padding-top: 12pt;
+            color: #666666;
+            font-size: 11pt;
+            padding-bottom: 4pt;
+            font-family: "Arial";
+            line-height: 1.1500000000000001;
+            page-break-after: avoid;
+            font-style: italic;
+            orphans: 2;
+            widows: 2;
+            text-align: left
+        }
+
+        .mb-20px {
+            margin-bottom: 20px;
+        }
+
+        .mb-10px{
+            margin-bottom: 10px;
+        }
+
+        .indented {
+            margin-left: 20px;
+        }
+
+        @media print {
+            .page-break-before-auto {
+                page-break-before: auto;
+            }
+
+            .page-break-inside-avoid {
+                page-break-inside: avoid;
+            }
+
+            @page {
+                margin: 72pt;
+            }
+        }
+    </style>
+</head>
+
+<body class="c13 doc-content">
+    <p>
+        <span class="c10 c12"><%= resumeHeader.fullName ? resumeHeader.fullName : '' %></span>
+    </p>
+
+    <p class="mb-20px">
+        <span class="c10 c11">
+            <%= resumeHeader.location ? resumeHeader.location : '' %>
+            <% if (resumeHeader.phone) { %> | <%= resumeHeader.phone %><% } %>
+            <% if (resumeHeader.email) { %> | <%= resumeHeader.email %><% } %>
+            <% if (resumeHeader.url) { %> | <%= resumeHeader.url %><% } %>
+        </span>
+    </p>
+
+    <% if (resumeHeader.summary) { %>
+        <p class="c5">
+            <span class="c0">PROFESSIONAL SUMMARY</span>
+        </p>
+        <p class="mb-20px">
+            <span class="c9"><%= resumeHeader.summary %></span>
+        </p>
+    <% } %>
+
+    <% if (education && education.length > 0) { %>
+        <div class="education-container mb-20px page-break-inside-avoid">
+            <p class="c5">
+                <span class="c1 c4 c10">EDUCATION</span>
+            </p>
+            <% education.forEach(function(edu) { %>
+                <div class="education mb-10px page-break-inside-avoid">
+                    <p class="c5">
+                        <span class="c1"><%= edu.name %></span>
+                        <span class="c2">&nbsp;| <%= edu.startYear %> - <%= edu.endYear %></span>
+                    </p>
+                    <p class="c5">
+                        <span class="c1 c8"><%= edu.degreeName %></span>
+                        <span class="c2">&nbsp;</span>
+                    </p>
+                    <% if (edu.awards) { %>
+                        <p class="c5">
+                            <span class="c2"><%= edu.awards %></span>
+                        </p>
+                    <% } %>
+                    <% if (edu.coursework) { %>
+                        <p class="c5 indented">
+                            <span class="c2"><%= edu.coursework %></span>
+                        </p>
+                    <% } %>
+                </div>
+            <% }); %>
+        </div>
+    <% } %>
+    
+    <% if (experiences && experiences.length > 0) { %>
+        <div class="experience-container mb-20px page-break-inside-avoid">
+            <p class="c5">
+                <span class="c1 c4">EXPERIENCE</span>
+                <span class="c9"><br></span>
+            </p>
+            <% experiences.forEach(function(experience) { %>
+                <div class="experience page-break-inside-avoid">
+                    <p class="c5">
+                        <span class="c1"><%= experience.jobTitle %>,</span>
+                        <span class="c9">&nbsp;<%= experience.employer %></span>
+                        <span class="c2">|&nbsp;<%= experience.startYear %> &ndash; <%= experience.endYear %></span>
+                    </p>
+                    <p class="c5 indented">
+                        <span class="c2"><%= experience.summary %></span>
+                    </p>
+                </div>
+            <% }); %>
+        </div>
+    <% } %>
+
+    <% if (skills && skills.length > 0) { %>
+        <div class="skills-container mb-20px page-break-inside-avoid">
+            <p class="c5">
+                <span class="c1 c4">SKILLS</span>
+            </p>
+            <p class="c5">
+                <span class="c2 page-break-inside-avoid">
+                    <% skills.forEach(function(skill, index) { %>
+                        <%= skill.name %><%= index < skills.length - 1 ? ', ' : '' %>
+                    <% }); %>
+                </span>
+            </p>
+        </div>
+    <% } %>
+
+    <% if (certificates && certificates.length > 0) { %>
+        <div class="certificates-container mb-20px page-break-inside-avoid">
+            <p class="c5">
+                <span class="c1 c4">CERTIFICATES</span>
+            </p>
+            <% certificates.forEach(function(cert) { %>
+                <div class="certificate page-break-inside-avoid">
+                    <p class="c5">
+                        <span class="c1"><%= cert.title %></span><span class="c2">&nbsp;| <%= cert.issuer %></span><br>
+                        <span class="c2"><%= cert.issueDate %> - <%= cert.expires %></span><br>
+                        <span class="c2"><%= cert.url %></span><br>
+                        <p class="c5 indented">
+                            <span class="c2"><%= cert.summary %></span>
+                        </p>
+                    </p>
+                </div>
+            <% }); %>
+        </div>
+    <% } %>
+
+    <% if (projects && projects.length > 0) { %>
+        <div class="projects-container page-break-inside-avoid">
+            <p class="c5">
+                <span class="c1 c4">PROJECTS</span>
+            </p>
+            <% projects.forEach(function(project) { %>
+                <div class="project page-break-inside-avoid">
+                    <p class="c5">
+                        <span class="c1"><%= project.title %></span><span class="c2">&nbsp;| <%= project.location %></span><br>
+                        <span class="c2"><%= project.startDate %> - <%= project.endDate %></span><br>
+                        <p class="c5 indented">
+                            <span class="c2"><%= project.summary %></span>
+                        </p>
+                    </p>
+                </div>
+            <% }); %>
+        </div>
+    <% } %>
+</body>
+</html>
