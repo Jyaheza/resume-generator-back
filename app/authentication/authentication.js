@@ -1,6 +1,6 @@
 const db = require("../models");
 const { hashPassword } = require("./crypto");
-const Session = db.session;
+const Session = db.Session;
 const User = db.User;
 
 /**
