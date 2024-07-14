@@ -18,9 +18,8 @@ module.exports = (app) => {
     // Retrieve a single Skills with id
     router.get("/skills/:id", Skills.findOne);
 
-        
     // Retrieve all skills for user 
-    router.get("/users/:userId/skills/", Skills.findAllForUser);
+    router.get("/skills/user/:userId", Skills.findAllForUser);
 
     // // Update a users skills with new id
     // router.put("/users/:userId/skills/:skillsId", [authenticateRoute], Skills.update);
