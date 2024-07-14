@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const Experience = sequelize.define("Experiences", {
+  const Experiences = sequelize.define("Experiences", {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
@@ -34,5 +34,5 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: true
     }
   });
-  return Experience;
+  return Experiences;
 };

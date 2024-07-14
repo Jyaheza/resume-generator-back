@@ -18,9 +18,8 @@ module.exports = (app) => {
     // Retrieve a single certificate with id
     router.get("/certificates/:id", Certificates.findOne);
 
-
     // Retrieve all certificate for user 
-    router.get("/users/:userId/certificates/", Certificates.findAllForUser);
+    router.get("/certificates/user/:userId", Certificates.findAllForUser);
 
     // // Update a users certificate with new id
     // router.put("/users/:userId/certificates/:certificateId", [authenticateRoute], Certificates.update);

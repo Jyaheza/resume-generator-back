@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Certificate = sequelize.define("Certificate", {
+    const Certificates = sequelize.define("Certificate", {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -30,6 +30,6 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: true
       }
     });
-    return Certificate;
+    return Certificates;
   };
   

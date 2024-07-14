@@ -16,38 +16,37 @@ db.sequelize = sequelize;
 
 /// Import and initialize models
 db.User = require("./user.model.js")(sequelize, Sequelize);
-db.Resume = require("./resume.model.js")(sequelize, Sequelize);
+db.Resumes = require("./resume.model.js")(sequelize, Sequelize);
 db.ResumeData = require("./resumedata.model.js")(sequelize, Sequelize);
 db.ResumeReview = require("./review.model.js")(sequelize, Sequelize);
-db.Skill = require("./skills.model.js")(sequelize, Sequelize);
-db.Project = require("./projects.model.js")(sequelize, Sequelize);
-db.Experience = require("./experiences.model.js")(sequelize, Sequelize);
+db.Skills = require("./skills.model.js")(sequelize, Sequelize);
+db.Projects = require("./projects.model.js")(sequelize, Sequelize);
+db.Experiences = require("./experiences.model.js")(sequelize, Sequelize);
 db.Education = require("./education.model.js")(sequelize, Sequelize);
-db.Certificate = require("./certificates.model.js")(sequelize, Sequelize);
+db.Certificates = require("./certificates.model.js")(sequelize, Sequelize);
 db.Session = require("./session.model.js")(sequelize, Sequelize);
 
 // Define relationships
 
 // User has many Resumes
-db.User.hasMany(db.Resume, {
+db.User.hasMany(db.Resumes, {
   as: "resumes",
   foreignKey: { allowNull: false, name: 'user_id' },
   onDelete: "CASCADE",
 });
-db.Resume.belongsTo(db.User, {
+db.Resumes.belongsTo(db.User, {
   as: "user",
   foreignKey: { allowNull: false, name: 'user_id' },
   onDelete: "CASCADE",
 });
 
-
 // Resume has many ResumeReviews
-db.Resume.hasMany(db.ResumeReview, {
+db.Resumes.hasMany(db.ResumeReview, {
   as: "resumeReviews",
   foreignKey: { allowNull: false, name: 'resume_id' },
   onDelete: "CASCADE",
 });
-db.ResumeReview.belongsTo(db.Resume, {
+db.ResumeReview.belongsTo(db.Resumes, {
   as: "resume",
   foreignKey: { allowNull: false, name: 'resume_id' },
   onDelete: "CASCADE",
@@ -65,37 +64,44 @@ db.ResumeReview.belongsTo(db.User, {
   onDelete: "CASCADE",
 });
 
+//Resume data belongs to a user
+db.ResumeData.belongsTo(db.User, {
+  as:"user",
+  foreignKey: {allowNull: false, name: 'user_id'},
+  onDelete: 'CASCADE'
+});
+
 // User has many Skills
-db.User.hasMany(db.Skill, {
+db.User.hasMany(db.Skills, {
   as: "skills",
   foreignKey: { allowNull: false, name: 'user_id' },
   onDelete: "CASCADE",
 });
-db.Skill.belongsTo(db.User, {
+db.Skills.belongsTo(db.User, {
   as: "user",
   foreignKey: { allowNull: false, name: 'user_id' },
   onDelete: "CASCADE",
 });
 
 // User has many Projects
-db.User.hasMany(db.Project, {
+db.User.hasMany(db.Projects, {
   as: "projects",
   foreignKey: { allowNull: false, name: 'user_id' },
   onDelete: "CASCADE",
 });
-db.Project.belongsTo(db.User, {
+db.Projects.belongsTo(db.User, {
   as: "user",
   foreignKey: { allowNull: false, name: 'user_id' },
   onDelete: "CASCADE",
 });
 
 // User has many Experiences
-db.User.hasMany(db.Experience, {
+db.User.hasMany(db.Experiences, {
   as: "experiences",
   foreignKey: { allowNull: false, name: 'user_id' },
   onDelete: "CASCADE",
 });
-db.Experience.belongsTo(db.User, {
+db.Experiences.belongsTo(db.User, {
   as: "user",
   foreignKey: { allowNull: false, name: 'user_id' },
   onDelete: "CASCADE",
@@ -114,12 +120,12 @@ db.Education.belongsTo(db.User, {
 });
 
 // User has many Certificates
-db.User.hasMany(db.Certificate, {
+db.User.hasMany(db.Certificates, {
   as: "certificates",
   foreignKey: { allowNull: false, name: 'user_id' },
   onDelete: "CASCADE",
 });
-db.Certificate.belongsTo(db.User, {
+db.Certificates.belongsTo(db.User, {
   as: "user",
   foreignKey: { allowNull: false, name: 'user_id' },
   onDelete: "CASCADE",

@@ -16,11 +16,10 @@ module.exports = (app) => {
     router.get("/resumedata/", ResumeData.findAll);
 
     // Retrieve a single resume data with id
-    router.get("/resumedata/:id", Resumedata.findOne); 
-    
+    router.get("/resumedata/:id", ResumeData.findOne); 
     
     // Retrieve all resumedata for user 
-    router.get("/users/:userId/resumedata/", Resumedata.findAllForUser);
+    router.get("/resumedata/user/:userId", ResumeData.findAllForUser);
 
     // // Update a users resumedata with new id
     // router.put("/users/:userId/resumedata/:resumedataId", [authenticateRoute], Resumedata.update);
