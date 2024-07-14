@@ -2,7 +2,8 @@ const convertHtmlToPdfBase64 = require('../services/pdf-generate-service');
 const ejs = require('ejs');
 const path = require('path');
 const db = require('../models');
-const Resume = db.Resume;
+const fs = require('fs');
+const Resumes = db.Resumes;
 
 exports.create = async (req, res) => {
     try {
@@ -10,7 +11,6 @@ exports.create = async (req, res) => {
         const templateId = req.body.templateId;
         const html = await ejs.renderFile(path.join(__dirname, `../templates/template${templateId}.ejs`), resumeJson);
         const base64Pdf = await convertHtmlToPdfBase64(html);
-
         const newResume = {
             createdAt: getMySQLDateTime(),
             resume_pdf: base64Pdf,
@@ -20,7 +20,7 @@ exports.create = async (req, res) => {
             user_id: req.body.userId
         };
 
-        const createdResume = await Resume.create(newResume);
+        const createdResume = await Resumes.create(newResume);
 
         try {
             res.send({ status: "success", createdResumeId: createdResume.id });
@@ -39,10 +39,30 @@ exports.create = async (req, res) => {
     }
 }
 
+exports.findAllForUser = async (req, res) => {
+    let resumes;
+    try {
+        resumes = await Resumes.findAll({
+            where: { user_id: req.params.userId }
+        });
+    } catch (error) {
+        console.error("Error fetching resumes: ", error);
+        throw error;
+    }
+
+    try {
+        return res.send(resumes);
+    } catch (error) {
+        console.error("Error occurred in resume respose: ", error);
+        return res.status(500).send({
+            message: "An error occurred while retrieving resumes."
+        });
+    }
+};
+
 /** Stubs. Add implementation later */
 exports.findAll = (req, res) => { /* stub */ };
 exports.findOne = (req, res) => { /* stub */ };
-exports.findAllForUser = (req, res) => { /* stub */ };
 exports.createResume = (req, res) => { /* stub */ };
 exports.update = (req, res) => { /* stub */ };
 exports.delete = (req, res) => { /* stub */ };

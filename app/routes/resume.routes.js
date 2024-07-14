@@ -4,25 +4,25 @@ module.exports = (app) => {
     const { authenticateRoute } = require("../authentication/authentication");
   
     // Create a new Setting for a Resume
-    router.post("/resume/", 
-      [authenticateRoute], 
+    router.post("/resumes/", 
+      // [authenticateRoute], 
       Resume.create);
   
     //Update a Resume with ID
-    router.put("/resume/:id", [authenticateRoute], Resume.update);
+    router.put("/resumes/:id", [authenticateRoute], Resume.update);
   
     //Delete a Resume for user
-    router.delete("/resume/:id", [authenticateRoute], Resume.delete);
+    router.delete("/resumes/:id", [authenticateRoute], Resume.delete);
   
     // Retrieve a all Resume with id
-    router.get("/resume/", Resume.findAll);
+    router.get("/resumes/", Resume.findAll);
 
     // Retrieve a single Resume with id
-    router.get("/resume/:id", Resume.findOne);
+    router.get("/resumes/:id", Resume.findOne);
 
 
     // Retrieve all resume for user 
-    router.get("/users/:userId/resume/", Resume.findAllForUser);
+    router.get("/resumes/user/:userId", Resume.findAllForUser);
 
     // // Update a users resume with new id
     // router.put("/users/:userId/resume/:resumeId", [authenticateRoute], Resume.update);

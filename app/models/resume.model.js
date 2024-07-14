@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const Resume = sequelize.define("Resume", {
+  const Resumes = sequelize.define("Resume", {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
@@ -14,9 +14,9 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: true
     },
     resume_pdf: {
-      type: Sequelize.STRING,
+      type: Sequelize.BLOB('long'),
       allowNull: true
     },
   });
-  return Resume;
+  return Resumes;
 };

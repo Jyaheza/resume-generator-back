@@ -20,7 +20,7 @@ module.exports = (app) => {
 
 
     // Retrieve all projects for user 
-    router.get("/users/:userId/projects/", Projects.findAllForUser);
+    router.get("/projects/user/:userId", Projects.findAllForUser);
 
     // // Update a users projects with new id
     // router.put("/users/:userId/projects/:projectsId", [authenticateRoute], Projects.update);
