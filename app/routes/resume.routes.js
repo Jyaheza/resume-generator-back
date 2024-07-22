@@ -17,9 +17,12 @@ module.exports = (app) => {
     // Retrieve a all Resume with id
     router.get("/resumes/", Resume.findAll);
 
+    router.get("/resumes/meta/user/:id", Resume.findMetaForUser);
+
     // Retrieve a single Resume with id
     router.get("/resumes/:id", Resume.findOne);
 
+    router.get("/resumes/pdf/:id", Resume.findResumePdfById)
 
     // Retrieve all resume for user 
     router.get("/resumes/user/:userId", Resume.findAllForUser);

@@ -4,6 +4,8 @@ const path = require('path');
 const db = require('../models');
 const fs = require('fs');
 const Resumes = db.Resumes;
+const ResumeData = db.ResumeData;
+const { QueryTypes } = require('sequelize');
 
 exports.create = async (req, res) => {
     try {
@@ -60,12 +62,94 @@ exports.findAllForUser = async (req, res) => {
     }
 };
 
+exports.findMetaForUser = async (req, res) => {
+    let userId = req.params.id;
+    try {
+        const results = await db.sequelize.query(`
+            SELECT 
+              rd.*,
+              r.id as resume_id,
+              r.createdAt,
+              r.title,
+              r.user_id
+            FROM resumes as r
+            JOIN resumeData as rd ON r.user_id = rd.user_id
+            WHERE r.user_id = :userId
+          `, {
+            replacements: { userId },
+            type: QueryTypes.SELECT
+        });
+
+        if (!results || results.length === 0) {
+            return res.status(404).send({ message: "No data found for the given user ID" });
+        }
+
+        res.setHeader('Content-Type', 'application/json');
+        return res.status(200).send(results);
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        throw error;
+    }
+}
+
 /** Stubs. Add implementation later */
 exports.findAll = (req, res) => { /* stub */ };
-exports.findOne = (req, res) => { /* stub */ };
+exports.findOne = (req, res) => {};
 exports.createResume = (req, res) => { /* stub */ };
 exports.update = (req, res) => { /* stub */ };
-exports.delete = (req, res) => { /* stub */ };
+exports.delete = async (req, res) => {
+    const resumeId = req.params.id;
+    try {
+        const result = await Resumes.destroy({
+            where: { id: resumeId }
+        });
+
+        if (result === 0) {
+            console.error(`No resume found with id: ${resumeId}`);
+            return res.status(500).send({
+                message: 'No resume found',
+            });
+        }
+
+        try {
+            return res.send({ message: 'Resume deleted successfully', success: true });
+        } catch (error) {
+            console.error(`An error occurred while sending the PDF response: ${error.message}`);
+            return res.status(500).send({
+                message: "An error occurred while returning the PDF.",
+            });
+        }
+    } catch (error) {
+        console.error("Error deleting resume: ", error);
+        return res.status(500).send({
+            message: "An error occurred while deleting the resume."
+        });
+    }
+};
+
+exports.findResumePdfById = async (req, res) => {
+    const resumeId = req.params.id;
+
+    try {
+        const resume = await Resumes.findOne({
+            where: { id: resumeId },
+            attributes: ['resume_pdf']
+        });
+
+        if (!resume) {
+            return res.status(404).send({ message: "Resume not found" });
+        }
+
+        // Send the resume_pdf as the response
+        res.setHeader('Content-Type', 'application/json');
+        return res.status(200).send({"pdf": resume.resume_pdf});
+    } catch (error) {
+        console.error("Error fetching resume PDF:", error);
+        return res.status(500).send({
+            message: "An error occurred while retrieving the resume PDF.",
+        });
+    }
+};
 
 function getMySQLDateTime() {
     const now = new Date();
