@@ -71,9 +71,10 @@ exports.findMetaForUser = async (req, res) => {
               r.id as resume_id,
               r.createdAt,
               r.title,
+              r.cs_visible,
               r.user_id
             FROM Resumes as r
-            JOIN ResumeData as rd ON r.user_id = rd.user_id
+            JOIN ResumeRata as rd ON r.user_id = rd.user_id
             WHERE r.user_id = :userId
           `, {
             replacements: { userId },
@@ -148,6 +149,27 @@ exports.findResumePdfById = async (req, res) => {
         return res.status(500).send({
             message: "An error occurred while retrieving the resume PDF.",
         });
+    }
+};
+
+exports.findResumeJsonById = async (req, res) => {
+    const resumeId = req.params.id;
+
+    try {
+        const resume = await Resumes.findOne({
+            where: { id: resumeId },
+            attributes: ['resume_text']
+        });
+
+        if (!resume) {
+            throw new Error("Resume not found");
+        }
+
+        // Send the resume_pdf as the response
+        return resume.resume_text;
+    } catch (error) {
+        console.error("Error fetching resume JSON:", error);
+        throw new Error("An error occurred while retrieving the resume JSON.");
     }
 };
 

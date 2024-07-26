@@ -13,14 +13,13 @@ module.exports = (app) => {
     router.delete("/projects/:id", [authenticateRoute], Projects.delete);
   
     // Retrieve a all Projects with id
-    router.get("/projects/", Projects.findAll);
+    router.get("/projects/", [authenticateRoute], Projects.findAll);
 
     // Retrieve a single Projects with id
-    router.get("/projects/:id", Projects.findOne);
-
+    router.get("/projects/:id", [authenticateRoute], Projects.findOne);
 
     // Retrieve all projects for user 
-    router.get("/projects/user/:userId", Projects.findAllForUser);
+    router.get("/projects/user/:userId",[authenticateRoute], Projects.findAllForUser);
 
     // // Update a users projects with new id
     // router.put("/users/:userId/projects/:projectsId", [authenticateRoute], Projects.update);

@@ -13,13 +13,13 @@ module.exports = (app) => {
     router.delete("/education/:id", [authenticateRoute], Education.delete);
   
     // Retrieve a all Education with id
-    router.get("/education/", Education.findAll);
+    router.get("/education/", [authenticateRoute], Education.findAll);
 
     // Retrieve a single Education with id
-    router.get("/education/:id", Education.findOne);
+    router.get("/education/:id", [authenticateRoute], Education.findOne);
 
     // Retrieve all education for user 
-    router.get("/education/user/:userId", Education.findAllForUser);
+    router.get("/education/user/:userId", [authenticateRoute], Education.findAllForUser);
 
     // // Update a users education with new id
     // router.put("/users/:userId/education/:educationId", [authenticateRoute], Education.update);

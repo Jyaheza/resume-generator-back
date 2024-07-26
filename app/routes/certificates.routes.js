@@ -13,13 +13,13 @@ module.exports = (app) => {
     router.delete("/certificates/:id", [authenticateRoute], Certificates.delete);
   
     // Retrieve a all certificates with id
-    router.get("/certificates/", Certificates.findAll);
+    router.get("/certificates/", [authenticateRoute], Certificates.findAll);
 
     // Retrieve a single certificate with id
-    router.get("/certificates/:id", Certificates.findOne);
+    router.get("/certificates/:id", [authenticateRoute], Certificates.findOne);
 
     // Retrieve all certificate for user 
-    router.get("/certificates/user/:userId", Certificates.findAllForUser);
+    router.get("/certificates/user/:userId", [authenticateRoute], Certificates.findAllForUser);
 
     // // Update a users certificate with new id
     // router.put("/users/:userId/certificates/:certificateId", [authenticateRoute], Certificates.update);

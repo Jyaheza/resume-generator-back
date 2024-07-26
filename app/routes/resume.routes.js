@@ -15,17 +15,17 @@ module.exports = (app) => {
     router.delete("/resumes/:id", [authenticateRoute], Resume.delete);
   
     // Retrieve a all Resume with id
-    router.get("/resumes/", Resume.findAll);
+    router.get("/resumes/", [authenticateRoute], Resume.findAll);
 
-    router.get("/resumes/meta/user/:id", Resume.findMetaForUser);
+    router.get("/resumes/meta/user/:id", [authenticateRoute], Resume.findMetaForUser);
 
     // Retrieve a single Resume with id
-    router.get("/resumes/:id", Resume.findOne);
+    router.get("/resumes/:id", [authenticateRoute], Resume.findOne);
 
-    router.get("/resumes/pdf/:id", Resume.findResumePdfById);
+    router.get("/resumes/pdf/:id", [authenticateRoute], Resume.findResumePdfById);
 
     // Retrieve all resume for user 
-    router.get("/resumes/user/:userId", Resume.findAllForUser);
+    router.get("/resumes/user/:userId", [authenticateRoute], Resume.findAllForUser);
 
     // // Update a users resume with new id
     // router.put("/users/:userId/resume/:resumeId", [authenticateRoute], Resume.update);
