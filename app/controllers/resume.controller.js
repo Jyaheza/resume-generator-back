@@ -74,7 +74,7 @@ exports.findMetaForUser = async (req, res) => {
               r.cs_visible,
               r.user_id
             FROM Resumes as r
-            JOIN ResumeRata as rd ON r.user_id = rd.user_id
+            JOIN ResumeData as rd ON r.user_id = rd.user_id
             WHERE r.user_id = :userId
           `, {
             replacements: { userId },
