@@ -13,14 +13,14 @@ module.exports = (app) => {
     router.delete("/review/:id", [authenticateRoute], Review.delete);
   
     // Retrieve a single Reviews with id
-    router.get("/review/", Review.findAll);
+    router.get("/review/", [authenticateRoute], Review.findAll);
 
     // Retrieve a single Reviews with id
-    router.get("/review/:id", Review.findOne);
+    router.get("/review/:id",[authenticateRoute], Review.findOne);
 
         
     // Retrieve all review for user 
-    router.get("/users/:userId/review/", Review.findAllForUser);
+    router.get("/users/:userId/review/", [authenticateRoute], Review.findAllForUser);
 
     // // Update a users review with new id
     // router.put("/users/:userId/review/:reviewId", [authenticateRoute], Review.update);

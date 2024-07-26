@@ -1,7 +1,8 @@
 const { generateJobMatchCritique, generateJobMatchScore } = require("../services/job-match-service");
+const { findResumeJsonById } = require("../controllers/resume.controller");
 
 exports.get = async (req, res) => {
-    const resume = req.body.resume; //TODO - When ready, this will come from the database rather than being passed in with request. 
+    const resume = await findResumeJsonById(req, res);
     const jobDescription = req.body.jobDescription;
 
     let jobMatchResponse = {

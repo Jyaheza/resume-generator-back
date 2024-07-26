@@ -13,13 +13,13 @@ module.exports = (app) => {
     router.delete("/experiences/:id", [authenticateRoute], Experiences.delete);
   
     // Retrieve a single Experiences with id
-    router.get("/experiences/", Experiences.findAll);
+    router.get("/experiences/", [authenticateRoute], Experiences.findAll);
 
     // Retrieve a single Experiences with id
-    router.get("/experiences/:id", Experiences.findOne);
+    router.get("/experiences/:id", [authenticateRoute], Experiences.findOne);
 
     // Retrieve all experiences for user 
-    router.get("/experiences/user/:userId", Experiences.findAllForUser);
+    router.get("/experiences/user/:userId", [authenticateRoute], Experiences.findAllForUser);
 
     // // Update a users experiences with new id
     // router.put("/users/:userId/experiences/:experiencesId", [authenticateRoute], Experiences.update);

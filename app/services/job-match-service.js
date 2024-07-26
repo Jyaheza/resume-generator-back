@@ -24,7 +24,7 @@ async function generateJobMatchScore(resume, jobDescription) {
     You should score based on any factors available in both the resume and job description including, but not limited to: job title, 
     the student's area of study, industry, business domain, education, certifications, required experience, salary range and geographic location. `;
 
-    chatInputMessage += `Here's the resume of interest: ${JSON.stringify(resume)}. `;
+    chatInputMessage += `Here's the resume of interest: ${resume}. `;
     chatInputMessage += `Here's the jobDescription of interest: ${jobDescription}.`;
 
     let score = await startCohereChat(preamble, chatInputMessage);
@@ -60,7 +60,7 @@ async function generateJobMatchCritique(resume, jobDescription) {
     business domain, education, certifications, required experience, salary range and geographic location. Please direct this commentary
     directly to the student, and do not refer to them in the 3rd person. `;
     
-    chatInputMessage += `Here's the resume of interest: ${JSON.stringify(resume)}. `;
+    chatInputMessage += `Here's the resume of interest: ${resume}. `;
     chatInputMessage += `Here's the jobDescription of interest: ${jobDescription}.`;
 
     return await startCohereChat(preamble, chatInputMessage);

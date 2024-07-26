@@ -13,13 +13,13 @@ module.exports = (app) => {
     router.delete("/resumedata/:id", [authenticateRoute], ResumeData.delete);
   
     // Retrieve a all resume data with id
-    router.get("/resumedata/", ResumeData.findAll);
+    router.get("/resumedata/", [authenticateRoute], ResumeData.findAll);
 
     // Retrieve a single resume data with id
-    router.get("/resumedata/:id", ResumeData.findOne); 
+    router.get("/resumedata/:id",[authenticateRoute], ResumeData.findOne); 
     
     // Retrieve all resumedata for user 
-    router.get("/resumedata/user/:userId", ResumeData.findAllForUser);
+    router.get("/resumedata/user/:userId", [authenticateRoute], ResumeData.findAllForUser);
 
     // // Update a users resumedata with new id
     // router.put("/users/:userId/resumedata/:resumedataId", [authenticateRoute], Resumedata.update);

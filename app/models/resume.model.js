@@ -17,6 +17,11 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.BLOB('long'),
       allowNull: true
     },
+    cs_visible: { 
+      type: Sequelize.BOOLEAN,
+      defaultValue: false, 
+      allowNull: false
+    }
   });
   return Resumes;
 };
