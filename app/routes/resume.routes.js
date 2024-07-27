@@ -27,6 +27,8 @@ module.exports = (app) => {
     // Retrieve all resume for user 
     router.get("/resumes/user/:userId", [authenticateRoute], Resume.findAllForUser);
 
+    router.put(`/resumes/csvisible/:id/:csvisible`, [authenticateRoute], Resume.updateCsVisible);
+
     // // Update a users resume with new id
     // router.put("/users/:userId/resume/:resumeId", [authenticateRoute], Resume.update);
 

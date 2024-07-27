@@ -5,7 +5,7 @@ const db = require('../models');
 const fs = require('fs');
 const Resumes = db.Resumes;
 const ResumeData = db.ResumeData;
-const { QueryTypes } = require('sequelize');
+const { QueryTypes, where } = require('sequelize');
 
 exports.create = async (req, res) => {
     try {
@@ -95,7 +95,7 @@ exports.findMetaForUser = async (req, res) => {
 
 /** Stubs. Add implementation later */
 exports.findAll = (req, res) => { /* stub */ };
-exports.findOne = (req, res) => {};
+exports.findOne = (req, res) => { };
 exports.createResume = (req, res) => { /* stub */ };
 exports.update = (req, res) => { /* stub */ };
 exports.delete = async (req, res) => {
@@ -143,7 +143,7 @@ exports.findResumePdfById = async (req, res) => {
 
         // Send the resume_pdf as the response
         res.setHeader('Content-Type', 'application/json');
-        return res.status(200).send({"pdf": resume.resume_pdf});
+        return res.status(200).send({ "pdf": resume.resume_pdf });
     } catch (error) {
         console.error("Error fetching resume PDF:", error);
         return res.status(500).send({
@@ -172,6 +172,38 @@ exports.findResumeJsonById = async (req, res) => {
         throw new Error("An error occurred while retrieving the resume JSON.");
     }
 };
+
+exports.updateCsVisible = async (req, res) => {
+    const resumeId = req.params.id;
+    const csVisible = req.params.csvisible;
+
+    try {
+        const [affectedRows] = await Resumes.update(
+            { cs_visible: csVisible },
+            { where: { id: resumeId } }
+        );
+
+        try{
+            if (affectedRows > 0) {
+                return res.status(200).send({
+                    message: 'cs_visible has been successfully updated.'
+                });
+              } else {
+                return res.status(500).send({
+                    message: 'No resume found with id' + resumeId,
+                });
+              }
+        } catch ( error ){
+            console.error(`An error occurred while returning cs_visibiliy update status: ${error.message}`);
+            return res.status(500).send({
+                message: "An error occurred while returning cs_visibiliy update status",
+            });
+        }
+    } catch (error) {
+        console.error("Error updating cs_visible", error);
+        throw new Error("An error occurred while updating cs_visible.");
+    }
+}
 
 function getMySQLDateTime() {
     const now = new Date();
