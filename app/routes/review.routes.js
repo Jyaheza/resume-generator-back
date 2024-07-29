@@ -4,8 +4,8 @@ module.exports = (app) => {
     const { authenticateRoute } = require("../authentication/authentication.js");
   
     // Create a new Reviews for a Resume
-    router.post("/review/", [authenticateRoute], Review.create);
-  
+    router.post("/reviews/:userId", [authenticateRoute],Review.create);
+
     //Update a Resume with ID
     router.put("/review/:id", [authenticateRoute], Review.update);
   
@@ -21,6 +21,9 @@ module.exports = (app) => {
         
     // Retrieve all review for user 
     router.get("/users/:userId/review/", [authenticateRoute], Review.findAllForUser);
+    
+    // Retrieve review all reviews on a resume 
+    router.get("/reviews/:resumeId", [authenticateRoute], Review.getReviewsForResume);
 
     // // Update a users review with new id
     // router.put("/users/:userId/review/:reviewId", [authenticateRoute], Review.update);

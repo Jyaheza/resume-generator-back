@@ -29,6 +29,9 @@ module.exports = (app) => {
 
     router.put(`/resumes/csvisible/:id/:csvisible`, [authenticateRoute], Resume.updateCsVisible);
 
+     // Retrieve all resume for careerServices
+     router.get("/resumes/careerservicesmeta/:userId",[authenticateRoute],Resume.findMetaForCareersServices);
+
     // // Update a users resume with new id
     // router.put("/users/:userId/resume/:resumeId", [authenticateRoute], Resume.update);
 
