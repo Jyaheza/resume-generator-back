@@ -108,7 +108,8 @@ exports.findMetaForCareersServices = async (req,res) => {
             JOIN ResumeData AS rd ON r.user_id = rd.user_id
             WHERE r.cs_visible = 1
         `, {
-            type: QueryTypes.SELECT
+            type: QueryTypes.SELECT,
+            order: [['createdAt', 'DESC']],
         });
 
         if (!results || results.length === 0) {

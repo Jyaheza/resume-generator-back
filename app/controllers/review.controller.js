@@ -8,7 +8,7 @@ exports.getReviewsForResume = async (req, res) => {
   try {
     const reviews = await ResumeReview.findAll({
       where: { resume_id: resumeId },
-      order: [['createdAt', 'DESC']], // Optionally order by creation date
+      order: [['createdAt', 'DESC']],
     });
 
     return res.status(200).send(reviews);
@@ -34,7 +34,7 @@ exports.create = async (req, res) => {
         comments: comments,
         suggestions: suggestions,
         status: 'Pending',
-        reviewer_id: userId,  // Assuming user ID is obtained from authentication middleware
+        reviewer_id: userId,  
         resume_id: resumeId
       });
   
