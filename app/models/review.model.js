@@ -9,7 +9,15 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false
     },
-    body: {
+    reviewer_name: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    comments: {
+      type: Sequelize.TEXT,
+      allowNull: false
+    },
+    suggestions: {
       type: Sequelize.TEXT,
       allowNull: false
     },

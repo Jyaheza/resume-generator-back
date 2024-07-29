@@ -91,7 +91,40 @@ exports.findMetaForUser = async (req, res) => {
         console.error("Error fetching data:", error);
         throw error;
     }
-}
+};
+
+exports.findMetaForCareersServices = async (req,res) => {
+    let user_id = req.params.userId;
+    try {
+        const results = await db.sequelize.query(`
+            SELECT 
+                rd.*,
+                r.id AS resume_id,
+                r.createdAt,
+                r.title,
+                r.cs_visible,
+                r.user_id
+            FROM Resumes AS r
+            JOIN ResumeData AS rd ON r.user_id = rd.user_id
+            WHERE r.cs_visible = 1
+        `, {
+            type: QueryTypes.SELECT,
+            order: [['createdAt', 'DESC']],
+        });
+
+        if (!results || results.length === 0) {
+            res.setHeader('Content-Type', 'application/json');
+            return res.status(404).send({ message: "No data found for the given user ID" });
+        }
+
+        res.setHeader('Content-Type', 'application/json');
+        return res.status(200).send(results);
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        res.setHeader('Content-Type', 'application/json');
+        return res.status(500).send({ message: "An error occurred while fetching data" });
+    }
+};
 
 /** Stubs. Add implementation later */
 exports.findAll = (req, res) => { /* stub */ };
