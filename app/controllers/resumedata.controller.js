@@ -18,7 +18,21 @@ exports.findAllForUser = async (req, res) => {
 /** Stubs. Add implementation later */
 exports.findAll = (req, res) => { /* stub */ };
 exports.findOne = (req, res) => { /* stub */ };
-exports.create = (req, res) => { /* stub */ };
+exports.create = async (req, res) => {
+  const newResumeData = req.body;
+
+  try {
+    const result = await ResumeData.create(newResumeData);
+    return res.status(200).send({
+      message: `Resume Data id ${result} has been successfully created.`
+    });
+  } catch (error) {
+    return res.status(500).send({
+      message: 'An error occurred creating new resumeData',
+    });
+  }
+};
+
 exports.update = async (req, res) => {
   const id = req.params.id;
   const resumeData = req.body;
