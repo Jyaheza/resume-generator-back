@@ -4,7 +4,7 @@ module.exports = (app) => {
     const { authenticateRoute } = require("../authentication/authentication.js");
   
     // Create a new resume data for a Resume
-    router.post("/resumedata/", [authenticateRoute], ResumeData.create);
+    router.post("/resumedata", [authenticateRoute], ResumeData.create);
   
     //Update a Resume data with ID
     router.put("/resumedata/:id", [authenticateRoute], ResumeData.update);
