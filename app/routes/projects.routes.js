@@ -4,12 +4,12 @@ module.exports = (app) => {
     const { authenticateRoute } = require("../authentication/authentication.js");
   
     // Create a new Projects for a Resume
-    router.post("/projects/", [authenticateRoute], Projects.create);
+    router.post("/projects/:userId", [authenticateRoute], Projects.create);
   
     //Update a Projects with ID
     router.put("/projects/:id", [authenticateRoute], Projects.update);
   
-    //Delete a Projects for resume
+    //Delete a Projects for resume  
     router.delete("/projects/:id", [authenticateRoute], Projects.delete);
   
     // Retrieve a all Projects with id
