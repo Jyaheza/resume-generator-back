@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
+const path = require('path');
 
 const app = express();
 
@@ -40,6 +41,12 @@ require("./app/routes/skills.routes.js")(app);
 require("./app/routes/review.routes.js")(app);
 // require("./app/routes/resumes.routes.js")(app);
 
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// Serve the index.html file for all unknown routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3201;
@@ -48,5 +55,6 @@ if (process.env.NODE_ENV !== "test") {
     console.log(`Server is running on port ${PORT}.`);
   });
 }
+
 
 module.exports = app;

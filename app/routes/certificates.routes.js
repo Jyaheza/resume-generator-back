@@ -4,7 +4,7 @@ module.exports = (app) => {
     const { authenticateRoute } = require("../authentication/authentication.js");
   
     // Create a new certificates for a Resume
-    router.post("/certificates/", [authenticateRoute], Certificates.create);
+    router.post("/certificates", [authenticateRoute], Certificates.create);
   
     //Update a certificates with ID
     router.put("/certificates/:id", [authenticateRoute], Certificates.update);
