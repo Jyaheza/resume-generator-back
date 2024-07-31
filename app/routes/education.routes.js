@@ -20,15 +20,6 @@ module.exports = (app) => {
 
     // Retrieve all education for user 
     router.get("/education/user/:userId", [authenticateRoute], Education.findAllForUser);
-
-    // // Update a users education with new id
-    // router.put("/users/:userId/education/:educationId", [authenticateRoute], Education.update);
-
-    // // Delete an education with education id
-    // router.delete("/users/:userId/education/:educationId", [authenticateRoute], Education.delete);
-
-    // // Search for a education for a specific user
-    // router.get("/users/:userId/education/:educationId", Education.findOneForUser);
   
     app.use("/resumebuilderapi", router);
   
