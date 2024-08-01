@@ -22,11 +22,11 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: true
       },
       issue_date: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         allowNull: false
       },
       expire_date: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         allowNull: true
       }
     });

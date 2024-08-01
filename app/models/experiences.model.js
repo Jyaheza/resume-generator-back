@@ -26,11 +26,11 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false
     },
     start_year: {
-      type: Sequelize.DATE,
+      type: Sequelize.STRING,
       allowNull: false
     },
     end_year: {
-      type: Sequelize.DATE,
+      type: Sequelize.STRING,
       allowNull: true
     }
   });
