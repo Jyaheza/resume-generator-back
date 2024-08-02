@@ -22,7 +22,7 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false
     },
     summary: {
-      type: Sequelize.STRING,
+      type: Sequelize.TEXT,
       allowNull: false
     },
     start_year: {

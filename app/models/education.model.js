@@ -30,11 +30,11 @@ module.exports = (sequelize, Sequelize) => {
       allowNull:true
     },
     awards: {
-      type: Sequelize.STRING,
+      type: Sequelize.TEXT,
       allowNull: true
     },
     coursework: {
-      type: Sequelize.STRING,
+      type: Sequelize.TEXT,
       allowNull: true
     }
   });
