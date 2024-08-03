@@ -217,6 +217,15 @@
             margin-left: 20px;
         }
 
+        .custom-pre {
+            white-space: pre-wrap;
+            /* Preserve whitespace and line breaks */
+            font-family: inherit;
+            /* Inherit the font from the parent element */
+            word-wrap: break-word;
+            /* Ensure long words break to fit the container */
+        }
+
         @media print {
             .page-break-before-auto {
                 page-break-before: auto;
@@ -252,7 +261,7 @@
             <span class="c0">PROFESSIONAL SUMMARY</span>
         </p>
         <p class="mb-20px">
-            <span class="c9"><%= resumeHeader.summary %></span>
+            <span class="c9"><pre class="custom-pre"><%= resumeHeader.summary %></pre></span>
         </p>
     <% } %>
 
@@ -273,12 +282,12 @@
                     </p>
                     <% if (edu.awards) { %>
                         <p class="c5">
-                            <span class="c2"><%= edu.awards %></span>
+                            <span class="c2"><pre class="custom-pre"><%= edu.awards %></pre></span>
                         </p>
                     <% } %>
                     <% if (edu.coursework) { %>
                         <p class="c5 indented">
-                            <span class="c2"><%= edu.coursework %></span>
+                            <span class="c2"><pre class="custom-pre"><%= edu.coursework %></pre></span>
                         </p>
                     <% } %>
                 </div>
@@ -300,7 +309,7 @@
                         <span class="c2">|&nbsp;<%= experience.startYear %> &ndash; <%= experience.endYear %></span>
                     </p>
                     <p class="c5 indented">
-                        <span class="c2"><%= experience.summary %></span>
+                        <span class="c2"><pre class="custom-pre"><%= experience.summary %></pre></span>
                     </p>
                 </div>
             <% }); %>
@@ -334,7 +343,7 @@
                         <span class="c2"><%= cert.issueDate %> - <%= cert.expires %></span><br>
                         <span class="c2"><%= cert.url %></span><br>
                         <p class="c5 indented">
-                            <span class="c2"><%= cert.summary %></span>
+                            <span class="c2"><pre class="custom-pre"><%= cert.summary %></pre></span>
                         </p>
                     </p>
                 </div>
@@ -353,7 +362,7 @@
                         <span class="c1"><%= project.title %></span><span class="c2">&nbsp;| <%= project.location %></span><br>
                         <span class="c2"><%= project.startDate %> - <%= project.endDate %></span><br>
                         <p class="c5 indented">
-                            <span class="c2"><%= project.summary %></span>
+                            <span class="c2"><pre class="custom-pre"><%= project.summary %></pre></span>
                         </p>
                     </p>
                 </div>

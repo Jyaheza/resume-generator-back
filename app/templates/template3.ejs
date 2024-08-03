@@ -336,6 +336,15 @@
             margin-left: 20px;
         }
 
+        .custom-pre {
+            white-space: pre-wrap;
+            /* Preserve whitespace and line breaks */
+            font-family: inherit;
+            /* Inherit the font from the parent element */
+            word-wrap: break-word;
+            /* Ensure long words break to fit the container */
+        }
+
         @media print {
             .page-break-before-auto {
                 page-break-before: auto;
@@ -370,7 +379,7 @@
     <hr>
 
     <% if (resumeHeader.summary) { %>
-        <p class="c2 mb-20px"><span class="c0"><%= resumeHeader.summary %></span></p>
+        <p class="c2 mb-20px"><span class="c0"><pre class="custom-pre"><%= resumeHeader.summary %></pre></span></p>
     <% } %>
     
     <% if (education && education.length > 0) { %>
@@ -396,7 +405,7 @@
                     <span class="c0"><%= edu.degreeName %></span>
                 </p>
                 <p class="c2">
-                    <span class="c0"><%= edu.summary %></span>
+                    <span class="c0"><pre class="custom-pre"><%= edu.summary %></pre></span>
                 </p>
             </div>
         <% }); %>
@@ -417,7 +426,7 @@
                     </p>
                     <p class="c2"><span class="c0"><%= exp.jobTitle %></span></p>
                     <p class="c2 indented">
-                        <span class="c0"><%= exp.summary %></span>
+                        <span class="c0"><pre class="custom-pre"><%= exp.summary %></pre></span>
                     </p>
                 </div>
             <% }); %>
@@ -439,7 +448,7 @@
                             <span class="c0 float-right"><%= project.startDate %> &ndash; <%= project.endDate %></span>
                         </p>
                         <p class="c2 indented">
-                            <span class="c0"><%= project.summary %></span>
+                            <span class="c0"><pre class="custom-pre"><%= project.summary %></pre></span>
                         </p>
                     </div>
                 <% }); %>
@@ -472,7 +481,7 @@
                         <span class="c0 float-right">Issued: <%= cert.issueDate %> Expires: <%= cert.expires %></span>
                     </p>
                     <p class="c2">
-                        <span class="c0"><%= cert.summary %></span>
+                        <span class="c0"><pre class="custom-pre"><%= cert.summary %></pre></span>
                     </p>
                     <p class="c2">
                         <span class="c0">Issued by: <%= cert.issuer %></span>
