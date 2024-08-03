@@ -4,6 +4,7 @@
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
     <style type="text/css">
         @import url(https://themes.googleusercontent.com/fonts/css?kit=wAPX1HepqA24RkYW1AuHYA);
+
         .c8 {
             color: #000000;
             font-weight: 700;
@@ -285,12 +286,21 @@
             margin-bottom: 20px;
         }
 
-        .mb-10px{
+        .mb-10px {
             margin-bottom: 10px;
         }
-        
+
         .float-right {
             float: right;
+        }
+
+        .custom-pre {
+            white-space: pre-wrap;
+            /* Preserve whitespace and line breaks */
+            font-family: inherit;
+            /* Inherit the font from the parent element */
+            word-wrap: break-word;
+            /* Ensure long words break to fit the container */
         }
 
         @media print {
@@ -306,7 +316,6 @@
                 margin: 72pt;
             }
         }
-
     </style>
 </head>
 
@@ -319,16 +328,16 @@
         </p>
         <p class="c19">
             <span class="c10">
-              <%= resumeHeader.location %>
-              <% if (resumeHeader.phone && resumeHeader.phone.trim()) { %> 
-                | <%= resumeHeader.phone %> 
-              <% } %>
-              <% if (resumeHeader.email && resumeHeader.email.trim()) { %> 
-                | <%= resumeHeader.email %>
-              <% } %>
-              <% if (resumeHeader.url && resumeHeader.url.trim()) { %> 
-                | <%= resumeHeader.url %>
-              <% } %>
+                <%= resumeHeader.location %>
+                    <% if (resumeHeader.phone && resumeHeader.phone.trim()) { %>
+                        | <%= resumeHeader.phone %>
+                            <% } %>
+                                <% if (resumeHeader.email && resumeHeader.email.trim()) { %>
+                                    | <%= resumeHeader.email %>
+                                        <% } %>
+                                            <% if (resumeHeader.url && resumeHeader.url.trim()) { %>
+                                                | <%= resumeHeader.url %>
+                                                    <% } %>
             </span>
         </p>
     </div>
@@ -337,152 +346,188 @@
         <p class="c22"><span class="c14">Professional Summary</span></p>
         <hr>
         <p class="c22 c11"><span class="c0"></span></p>
-        <p class="c1"><span class="c0"><%= resumeHeader.summary %></span></p>
+        <p class="c1"><span class="c0">
+                <pre class="custom-pre"><%= resumeHeader.summary %></pre>
+            </span></p>
         <p class="c1 c11"><span class="c0"></span></p>
-    <% } %>
+        <% } %>
 
-    <% if (education && education.length > 0) { %>
-        <p class="c22">
-            <span class="c8">EDUCATION</span>
-        </p>
-        <hr>
-        <div class="education-container mb-20px">
-            <% if (education && education.length > 0) { %>
-                <% education.forEach(function(education) { %>
-                    <div class="education">
-                        <p class="c11 c22">
-                            <span class="c8"></span>
-                        </p>
-                        <p class="c1">
-                            <span class="c14">
-                                <%= education.name %>,
-                            </span>
-                            <span class="c10">
-                                <%= education.location %>
-                            </span>
-                            <span class="float-right">
-                                <span class="c10">
-                                    <%= education.startYear %>
-                                </span>
-                                <span class="c14">- </span>
-                                <span class="c0">
-                                    <%= education.endYear %>
-                                </span>
-                            </span>
-                        </p>
-                        <p class="c1">
-                            <span class="c6">
-                                <%= education.degreeName %>
-                            </span>
-                            <span class="c8">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
-                        </p>
-                        <% if (education.gpa && education.gpa.trim()) { %>
-                            <p class="c1">
-                                <span class="c6">GPA:</span>
-                                <span class="c14"><%= education.gpa %></span>
-                            </p>
-                            <% } %>
-                            
-                            <% if (education.awards && education.awards.trim()) { %>
-                            <p class="c1">
-                                <span class="c6">Awards:</span>
-                                <span class="c0"><%= education.awards %></span>
-                            </p>
-                        <% } %>
-                        <% if (education.coursework) { %>
-                            <p class="c1">
-                                <span class="c18 c6">Coursework: <%= education.coursework %></span>
-                            </p>
-                        <% } %>
-                    </div>
-                <% }); %>
-            <% } %>
-        </div>
-    <% } %>
+            <% if (education && education.length> 0) { %>
+                <p class="c22">
+                    <span class="c8">EDUCATION</span>
+                </p>
+                <hr>
+                <div class="education-container mb-20px">
+                    <% if (education && education.length> 0) { %>
+                        <% education.forEach(function(education) { %>
+                            <div class="education">
+                                <p class="c11 c22">
+                                    <span class="c8"></span>
+                                </p>
+                                <p class="c1">
+                                    <span class="c14">
+                                        <%= education.name %>,
+                                    </span>
+                                    <span class="c10">
+                                        <%= education.location %>
+                                    </span>
+                                    <span class="float-right">
+                                        <span class="c10">
+                                            <%= education.startYear %>
+                                        </span>
+                                        <span class="c14">- </span>
+                                        <span class="c0">
+                                            <%= education.endYear %>
+                                        </span>
+                                    </span>
+                                </p>
+                                <p class="c1">
+                                    <span class="c6">
+                                        <%= education.degreeName %>
+                                    </span>
+                                    <span class="c8">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                        &nbsp; &nbsp;</span>
+                                </p>
+                                <% if (education.gpa && education.gpa.trim()) { %>
+                                    <p class="c1">
+                                        <span class="c6">GPA:</span>
+                                        <span class="c14">
+                                            <%= education.gpa %>
+                                        </span>
+                                    </p>
+                                    <% } %>
 
-    <% if (experiences && experiences.length > 0) { %>
-        <p class="c24">
-            <span class="c14">PROFESSIONAL EXPERIENCE</span>
-            <hr>
-        </p>
-
-        <div class="professional-experience-container mb-20px">
-            <% experiences.forEach(function(experience) { %>
-                <div class="professional-experience page-break-inside-avoid mb-20px">
-                    <p class="c1">
-                        <div class="c14 mb-10px"><%= experience.employer%></div>
-                        <span class="c6"><%= experience.jobTitle%></span>
-                        <span class="c0">, <%= experience.state%></span>
-                        <span class="c0 float-right"><%= experience.startYear%> - <%= experience.endYear%></span>
-                    </p>
-                    <ul class="c4 lst-kix_list_13-0 start">
-                        <span class="c0"><%= experience.summary %></span>
-                    </ul>
+                                        <% if (education.awards && education.awards.trim()) { %>
+                                            <p class="c1">
+                                                <span class="c6">Awards:</span>
+                                                <span class="c0">
+                                                    <pre class="custom-pre"><%= education.awards %></pre>
+                                                </span>
+                                            </p>
+                                            <% } %>
+                                                <% if (education.coursework) { %>
+                                                    <p class="c1">
+                                                        <span class="c18 c6"><pre class="custom-pre">Coursework: <%= education.coursework %></pre>
+                                                        </span>
+                                                    </p>
+                                                    <% } %>
+                            </div>
+                            <% }); %>
+                                <% } %>
                 </div>
-            <% }); %>
-        </div>
-    <% } %>
+                <% } %>
 
-    <% if (skills && skills.length > 0) { %>
-        <p class="c1 page-break-before-auto"><span class="c8">SKILLS</span></p>
-        <hr>
+                    <% if (experiences && experiences.length> 0) { %>
+                        <p class="c24">
+                            <span class="c14">PROFESSIONAL EXPERIENCE</span>
+                            <hr>
+                        </p>
 
-        <p class="c22 page-break-before-auto">
-            <span class="c8">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
-        </p>
-    
-        <div class="skills-container mb-20px page-break-before-auto">
-            <% skills.forEach(function(skill) { %>
-                <span class="c1 c6"><%= skill.name %>, </span>
-            <% }); %>
-        </div>
-    <% } %>
-
-    <% if (projects && projects.length > 0) { %>
-        <p class="c24 page-break-before-auto">
-            <span class="c14">PROJECTS</span>
-            <hr>
-        </p>
-    
-        <div class="projects-container mb-20px">
-            <% projects.forEach(function(project) { %>
-                <div class="project page-break-inside-avoid mb-20px">
-                    <p class="c1">
-                        <div class="c14 mb-10px"><%= project.title %></div>
-                        <span class="c0"><%= project.location %></span>
-                        <span class="c0 float-right"><%= project.startDate %> - <%= project.endDate %></span>
-                    </p>
-                    <ul class="c4 lst-kix_list_13-0 start">
-                        <span class="c0"><%= project.summary %></span>
-                    </ul>
-                </div>
-            <% }); %>
-        </div>
-    <% } %>
-
-    <% if (certificates && certificates.length > 0) { %>
-        <p class="c24 page-break-before-auto">
-            <span class="c14">CERTIFICATES</span>
-            <hr>
-        </p>
-    
-        <div class="certificates-container mb-20px">
-            <% certificates.forEach(function(certificate) { %>
-                <div class="certificate page-break-inside-avoid mb-20px">
-                    <p class="c1">
-                        <div>
-                            <span class="c14"><%= certificate.title %>,&nbsp;</span>
-                            <span class="c6"><%= certificate.issuer %></span>
+                        <div class="professional-experience-container mb-20px">
+                            <% experiences.forEach(function(experience) { %>
+                                <div class="professional-experience page-break-inside-avoid mb-20px">
+                                    <p class="c1">
+                                    <div class="c14 mb-10px">
+                                        <%= experience.employer%>
+                                    </div>
+                                    <span class="c6">
+                                        <%= experience.jobTitle%>
+                                    </span>
+                                    <span class="c0">, <%= experience.state%></span>
+                                    <span class="c0 float-right">
+                                        <%= experience.startYear%> - <%= experience.endYear%>
+                                    </span>
+                                    </p>
+                                    <ul class="c4 lst-kix_list_13-0 start">
+                                        <span class="c0">
+                                            <pre class="custom-pre"><%= experience.summary %></pre>
+                                        </span>
+                                    </ul>
+                                </div>
+                                <% }); %>
                         </div>
-                        <span class="c0 float-right">Issued: <%= certificate.issueDate %> - Expires: <%= certificate.expires %></span>
-                    </p>
-                    <ul class="c4 lst-kix_list_13-0 start">
-                        <span class="c0"><%= certificate.summary %></span>
-                    </ul>
-                </div>
-            <% }); %>
-        </div>
-    <% } %>
+                        <% } %>
+
+                            <% if (skills && skills.length> 0) { %>
+                                <p class="c1 page-break-before-auto"><span class="c8">SKILLS</span></p>
+                                <hr>
+
+                                <p class="c22 page-break-before-auto">
+                                    <span class="c8">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                        &nbsp; &nbsp; &nbsp;
+                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+                                </p>
+
+                                <div class="skills-container mb-20px page-break-before-auto">
+                                    <% skills.forEach(function(skill) { %>
+                                        <span class="c1 c6">
+                                            <%= skill.name %>,
+                                        </span>
+                                        <% }); %>
+                                </div>
+                                <% } %>
+
+                                    <% if (projects && projects.length> 0) { %>
+                                        <p class="c24 page-break-before-auto">
+                                            <span class="c14">PROJECTS</span>
+                                            <hr>
+                                        </p>
+
+                                        <div class="projects-container mb-20px">
+                                            <% projects.forEach(function(project) { %>
+                                                <div class="project page-break-inside-avoid mb-20px">
+                                                    <p class="c1">
+                                                    <div class="c14 mb-10px">
+                                                        <%= project.title %>
+                                                    </div>
+                                                    <span class="c0">
+                                                        <%= project.location %>
+                                                    </span>
+                                                    <span class="c0 float-right">
+                                                        <%= project.startDate %> - <%= project.endDate %>
+                                                    </span>
+                                                    </p>
+                                                    <ul class="c4 lst-kix_list_13-0 start">
+                                                        <span class="c0">
+                                                            <pre class="custom-pre"><%= project.summary %></pre>
+                                                        </span>
+                                                    </ul>
+                                                </div>
+                                                <% }); %>
+                                        </div>
+                                        <% } %>
+
+                                            <% if (certificates && certificates.length> 0) { %>
+                                                <p class="c24 page-break-before-auto">
+                                                    <span class="c14">CERTIFICATES</span>
+                                                    <hr>
+                                                </p>
+
+                                                <div class="certificates-container mb-20px">
+                                                    <% certificates.forEach(function(certificate) { %>
+                                                        <div class="certificate page-break-inside-avoid mb-20px">
+                                                            <p class="c1">
+                                                            <div>
+                                                                <span class="c14">
+                                                                    <%= certificate.title %>,&nbsp;
+                                                                </span>
+                                                                <span class="c6">
+                                                                    <%= certificate.issuer %>
+                                                                </span>
+                                                            </div>
+                                                            <span class="c0 float-right">Issued: <%=
+                                                                    certificate.issueDate %> - Expires: <%=
+                                                                        certificate.expires %></span>
+                                                            </p>
+                                                            <ul class="c4 lst-kix_list_13-0 start">
+                                                                <span class="c0">
+                                                                    <pre class="custom-pre"><%= certificate.summary %></pre>
+                                                                </span>
+                                                            </ul>
+                                                        </div>
+                                                        <% }); %>
+                                                </div>
+                                                <% } %>
 </body>
+
 </html>
