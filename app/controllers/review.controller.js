@@ -64,7 +64,7 @@ exports.create = async (req, res) => {
         } catch (error) {
             console.error(`An error occurred while sending the PDF response: ${error.message}`);
             return res.status(500).send({
-                message: "An error occurred while returning the PDF.",
+                message: "An error occurred while deleting the review.",
             });
         }
     } catch (error) {
