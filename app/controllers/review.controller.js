@@ -68,7 +68,7 @@ exports.create = async (req, res) => {
             });
         }
     } catch (error) {
-        console.error("Error deleting resume: ", error);
+        console.error("Error deleting review: ", error);
         return res.status(500).send({
             message: "An error occurred while deleting the review."
         });
