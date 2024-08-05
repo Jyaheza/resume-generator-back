@@ -60,7 +60,7 @@ exports.create = async (req, res) => {
         }
 
         try {
-            return res.send({ message: 'Resume deleted successfully', success: true });
+            return res.send({ message: 'Review deleted successfully', success: true });
         } catch (error) {
             console.error(`An error occurred while sending the review delete response: ${error.message}`);
             return res.status(500).send({
