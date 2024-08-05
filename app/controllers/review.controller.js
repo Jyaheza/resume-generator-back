@@ -53,7 +53,7 @@ exports.create = async (req, res) => {
         });
 
         if (result === 0) {
-            console.error(`No resume found with id: ${reviewId}`);
+            console.error(`No review found with id: ${reviewId}`);
             return res.status(500).send({
                 message: 'No review found',
             });
