@@ -10,7 +10,7 @@ module.exports = (app) => {
     router.put("/review/:id", [authenticateRoute], Review.update);
   
     //Delete a Reviews for resume
-    router.delete("/review/:id", [authenticateRoute], Review.delete);
+    router.delete("/reviews/:id", Review.delete);
   
     // Retrieve a single Reviews with id
     router.get("/review/", [authenticateRoute], Review.findAll);

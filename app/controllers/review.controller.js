@@ -44,11 +44,39 @@ exports.create = async (req, res) => {
       return res.status(500).send({ message: "Error adding review" });
     }
   };
-  
+
+  exports.delete = async (req, res) => {
+    const reviewId = req.params.id;
+    try {
+        const result = await ResumeReview.destroy({
+            where: { id: reviewId }
+        });
+
+        if (result === 0) {
+            console.error(`No resume found with id: ${reviewId}`);
+            return res.status(500).send({
+                message: 'No resume found',
+            });
+        }
+
+        try {
+            return res.send({ message: 'Resume deleted successfully', success: true });
+        } catch (error) {
+            console.error(`An error occurred while sending the PDF response: ${error.message}`);
+            return res.status(500).send({
+                message: "An error occurred while returning the PDF.",
+            });
+        }
+    } catch (error) {
+        console.error("Error deleting resume: ", error);
+        return res.status(500).send({
+            message: "An error occurred while deleting the resume."
+        });
+    }
+};
 
     /** Stubs. Add implementation later */
 exports.findAll = (req, res) => { /* stub */ };
 exports.findOne = (req, res) => { /* stub */ };
 exports.update = (req, res) => { /* stub */ };
-exports.delete = (req, res) => { /* stub */ };
 exports.findAllForUser = (req, res) => { /* stub */ };
